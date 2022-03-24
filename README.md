@@ -9,7 +9,7 @@ npm install reddbv6.5
 
 
 Usage:
-<script>
+
 const RedDb = require("reddbv6.5")
 
 RedDb.OnReady(() => {  // Required to do this before using the database, else it will error when trying to get items out of the db
