@@ -9,7 +9,7 @@ npm install reddbv6.5
 
 
 Usage:
-
+<script>
 const RedDb = require("reddbv6.5")
 
 RedDb.OnReady(() => {  // Required to do this before using the database, else it will error when trying to get items out of the db
@@ -18,7 +18,7 @@ RedDb.OnReady(() => {  // Required to do this before using the database, else it
 
     database1.examplekey = "examplevalue" // setting a value, can be anything. The key must be a string.
 
-    console.log(database1.examplekey)  // get the value of a set key, returns undefined if not set
+    console.log(database1.examplekey) //  get the value of a set key, returns undefined if not set
   })
   
   RedDb.DeleteDb("database2", (successfull) => { // it does what it says
@@ -26,6 +26,6 @@ RedDb.OnReady(() => {  // Required to do this before using the database, else it
   })
   
 })
-
+<script>
 
  RedDb migrating assistant coming soon for the people that for a reason want to migrate data
