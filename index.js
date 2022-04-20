@@ -67,12 +67,16 @@ fs.readdir(__dirname + "/saves", (err, files)=>{
             console.log(err)
         }
     } else {
-        files.forEach(async (f) => {
+        for (fea = 0; fea < files.length; fea++){
+            var f = files[fea]
             var realname = f.replace(".txt", "")
             fs.readFile(__dirname + "/saves/" + f, function(err1,filef){
                module.exports.databases[realname] = JSON.parse(filef) 
             })
-        })
+        }
+        
+        ModuleReady()
+
         setInterval(() => {
             fs.readdir(__dirname + "/saves", (err,files)=>{
                 if (err){
@@ -97,6 +101,3 @@ fs.readdir(__dirname + "/saves", (err, files)=>{
 
 
 
-setTimeout(()=>{
-    ModuleReady()
-},3000)
