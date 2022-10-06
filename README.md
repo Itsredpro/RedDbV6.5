@@ -1,31 +1,98 @@
-# RedDbV6.5
+Mijn Drive
 
-RedDb V6.5 Faster and Efficienter.
+# RedDb V6.5
+Faster, Efficienter then almost any other database.
+> Reliability is TBD tho.
 
-Installation:
+## Installation
 
-npm install reddbv6.5
+    npm i reddbv6.5
 
 
+## Usage
+**Create a database:**
+> RedDb.CreateDb(string Databasename, function Callback(bool Successfull))
 
-Usage:
+Example:
 
-const RedDb = require("reddbv6.5")
-
-RedDb.OnReady(() => {  // Required to do this before using the database, else it will error when trying to get items out of the db
-  RedDb.CreateDb("database1", (successfull) => { // successfull = true or false depending on if the database already exists
-    var database1 = RedDb.databases["database1"]  // get the database
-
-    database1.examplekey = "examplevalue" // setting a value, can be anything. The key must be a string.
-
-    console.log(database1.examplekey) //  get the value of a set key, returns undefined if not set
-  })
-  
-  RedDb.DeleteDb("database2", (successfull) => { // it does what it says
+    const reddb = require("reddbv6.5")
     
-  })
-  
-})
-<script>
+    reddb.CreateDb("test1", (suc)=>{
+	    if (suc){
+	    
+	    } else {
+	    
+	    }
+    })
 
- RedDb migrating assistant coming soon for the people that for a reason want to migrate data
+**Delete a database:**
+> RedDb.DeleteDb(string Databasename, function Callback(bool Successfull))
+
+Example:
+
+    const reddb = require("reddbv6.5")
+    
+    reddb.DeleteDb("test1", (suc)=>{
+	    if (suc){
+	    
+	    } else {
+	    
+	    }
+    })
+
+
+**Check if db is ready for pulling up data:**
+> reddb.OnReady(function Callback)
+
+Example:
+
+    const reddb = require("reddbv6.5")
+		
+	reddb.OnReady(()=>{
+		
+	})
+
+**Get all the databases:**
+> reddb.databases
+> Returns a table of all the databases
+> - Recommended to only use it after OnReady is fired.
+
+Example:
+
+    const reddb = require("reddbv6.5")
+    
+    reddb.databases
+
+**Get a database:**
+> reddb.databases[string DatabaseName]
+> Returns a table of all the entries and values of the database.
+> - Recommended to only use it after OnReady is fired.
+
+Example:
+
+    const reddb = require("reddbv6.5")
+    
+    reddb.databases["test1"]
+
+
+**Set a key:**
+> reddb.databases[string DatabaseName][string Keyname] = any Value
+
+
+Example:
+
+    const reddb = require("reddbv6.5")
+    
+    reddb.databases["test1"]["key"] = "value"
+
+**Get a key:**
+> reddb.databases[string DatabaseName][string Keyname]
+
+
+Example:
+
+    const reddb = require("reddbv6.5")
+    
+    var value = reddb.databases["test1"]["key"]
+    
+
