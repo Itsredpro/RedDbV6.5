@@ -59,7 +59,7 @@ module.exports.DeleteDb = function(name,Callback){
 }
 
 
-fs.readdir(__dirname + "/saves", (err, files)=>{
+fs.readdir(__dirname + "/saves", async(err, files)=>{
     if (err){
         console.error("[RedDb] - FS error while reading saves directory.\nTurn on debug to see the full error.")
 
@@ -70,9 +70,12 @@ fs.readdir(__dirname + "/saves", (err, files)=>{
         for (fea = 0; fea < files.length; fea++){
             var f = files[fea]
             var realname = f.replace(".txt", "")
-            fs.readFile(__dirname + "/saves/" + f, function(err1,filef){
-               module.exports.databases[realname] = JSON.parse(filef) 
-            })
+            var filef = await fs.readFileSync(__dirname + "/saves/" + f   )
+            filef = filef.toString() 
+            //console.log(realname)
+            //console.dir(filef)
+            module.exports.databases[realname] = await JSON.parse(filef) 
+            
         }
         
         ModuleReady()
@@ -88,6 +91,7 @@ fs.readdir(__dirname + "/saves", (err, files)=>{
                 } else {
                     files.forEach(f => {
                         var realname = f.replace(".txt", "")
+                        //console.log(realname)
                         var savetable = module.exports.databases[realname]
         
                         fs.writeFileSync(__dirname + "/saves/" + f, JSON.stringify(savetable))
@@ -98,6 +102,3 @@ fs.readdir(__dirname + "/saves", (err, files)=>{
         }, 50)
     }
 })
-
-
-
