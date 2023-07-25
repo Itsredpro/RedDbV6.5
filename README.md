@@ -1,6 +1,6 @@
 # RedDb V6.5
 Faster, Efficienter then almost any other database.
-> Reliability is TBD tho.
+
 
 ## Installation
 
